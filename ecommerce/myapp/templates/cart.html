@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/cart.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="cart-container">
+    <h2>Your Cart</h2>
+
+    {% if cart %}
+        {% for key, item in cart.items %}
+            <div class="cart-item">
+
+                <img src="{{ item.image }}" alt="{{ item.name }}" class="cart-img">
+
+                <div class="cart-details">
+                    <h4>{{ item.name }}</h4>
+                    <p>Price: ₹{{ item.price }}</p>
+
+                    <!-- QUANTITY CONTROLS -->
+                    <div class="qty-box">
+                        <a href="{% url 'remove_cart' key %}" class="qty-btn">−</a>
+                        <span>{{ item.qty }}</span>
+                        <a href="{% url 'cart_add' key %}"
+                           class="qty-btn {% if item.qty >= item.stock %}disabled{% endif %}">
+                           +
+                        </a>
+                    </div>
+
+                    <p>Total: ₹{{ item.item_total }}</p>
+
+                    <!-- ❌ REMOVE FULL ITEM -->
+                    <a href="{% url 'cart_delete' key %}" class="remove-btn">
+                        ❌ Remove Item
+                    </a>
+                </div>
+
+            </div>
+        {% endfor %}
+    {% else %}
+        <p class="empty-cart">Your cart is empty</p>
+    {% endif %}
+
+    <a href="{% url 'home' %}" class="continue-shopping">
+        ⬅ Continue Shopping
+    </a>
+</div>
+
+<hr>
+
+<div class="cart-summary">
+    <h3>Total: ₹{{ total }}</h3>
+    <a href="{% url 'checkout' %}" class="checkout-btn">
+        Proceed to Checkout
+    </a>
+</div>
+
+{% endblock %}

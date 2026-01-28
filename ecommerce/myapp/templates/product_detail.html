@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/product_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="product-detail">
+    <div class="product-card">
+
+        <div class="image-box">
+            <img src="{{ product.image.url }}" alt="{{ product.name }}">
+        </div>
+
+        <div class="content-box">
+            <h2>{{ product.name }}</h2>
+            <p class="price">₹{{ product.price }}</p>
+            <p class="desc">{{ product.description }}</p>
+
+            {% if product.stock == 0 %}
+                <span class="stock out">Out of Stock</span>
+                <button class="btn disabled" disabled>Out of Stock</button>
+            {% else %}
+                <span class="stock in">In Stock: {{ product.stock }}</span>
+                <a href="{% url 'add_to_cart' product.id %}" class="btn primary">
+                    Add to Cart
+                </a>
+            {% endif %}
+
+            <a href="{% url 'home' %}" class="btn secondary">
+                ← Back to Shop
+            </a>
+        </div>
+
+    </div>
+</div>
+
+{% endblock %}

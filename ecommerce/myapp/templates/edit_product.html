@@ -1,0 +1,36 @@
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/add_product.css' %}">
+{% endblock css %}
+
+{% block content %}
+<div class="form-container">
+    <h2>Edit Product</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <input type="text" name="name" value="{{ product.name }}">
+        <input type="number" name="price" value="{{ product.price }}">
+
+        <textarea name="description">{{ product.description }}</textarea>
+
+        <input type="text" name="category" value="{{ product.categoary }}">
+        <input type="number" name="stock" value="{{ product.stock }}">
+
+        <!-- CURRENT IMAGE -->
+        <div style="margin-bottom: 15px;">
+            <p style="margin-bottom:5px;">Current Image:</p>
+            <img src="{{ product.image.url }}" width="120" style="border-radius:8px;">
+        </div>
+
+        <!-- NEW IMAGE -->
+        <input type="file" name="image">
+
+        <button type="submit">Update Product</button>
+    </form>
+
+    <a href="{% url 'view_products' %}">⬅ Back</a>
+</div>
+
+{% endblock content %}

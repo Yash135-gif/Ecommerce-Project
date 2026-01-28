@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}ShopX{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block css %}{% endblock %}
+</head>
+<body>
+
+<header class="navbar">
+
+    <div class="nav-left">
+        <h2 class="logo">ShopX</h2>
+        <span class="logo-tag">your way</span>
+    </div>
+
+<div class="nav-center">
+    <form method="get" class="search-form">
+        <input type="text" name="q" placeholder="Search products, brands & more...">
+    </form>
+</div>
+
+<div class="nav-right">
+    <a href="{% url 'home' %}">Home</a>
+
+    {# ===== ADMIN ONLY ===== #}
+    {% if auth and auth.role == 'admin' %}
+        <a href="{% url 'admin_dashboard' %}">Admin Dashboard</a>
+    {% endif %}
+
+    {# ===== CUSTOMER ONLY ===== #}
+    {% if auth and auth.role == 'customer' %}
+        <div class="nav-dropdown">
+            <span class="nav-drop-title">Categories ▼</span>
+            <div class="nav-drop-menu">
+                <a href="{% url 'home' %}?categoary=Electronics">Electronics</a>
+                <a href="{% url 'home' %}?categoary=Fashion">Fashion</a>
+                <a href="{% url 'home' %}?categoary=Home and Kitchen">Home and Kitchen</a>
+                <a href="{% url 'home' %}?categoary=Books">Books</a>
+            </div>
+        </div>
+    {% endif %}
+
+    <a href="#">Offers</a>
+
+    <a href="{% url 'cart' %}" class="cart-link">
+        🛒 Cart
+        {% if cart_count %}
+            <span class="cart-count">{{ cart_count }}</span>
+        {% endif %}
+    </a>
+
+    {% if auth and auth.role == 'customer' %}
+        <a href="{% url 'order_history' %}">My Orders</a>
+    {% endif %}
+
+    <div class="auth-links">
+        {% if auth %}
+            <div class="profile-dropdown">
+                <span class="profile-name">Hi, {{ auth.name }} ▼</span>
+                <div class="profile-modal">
+                    <h4>{{ auth.name }}</h4>
+                    <p>{{ auth.email }}</p>
+                    <hr>
+                    <p style="font-weight:bold; margin-bottom:5px;">Recent Orders:</p>
+
+                    {% if auth_orders %}
+                        <ul>
+                            {% for order in auth_orders %}
+                                <li>Order #{{ order.id }} - ₹{{ order.total_price }}</li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p>No orders yet</p>
+                    {% endif %}
+
+                    <a href="{% url 'logout' %}" class="btn-logout">Logout</a>
+                </div>
+            </div>
+        {% else %}
+            <a href="{% url 'login' %}" class="btn-outline">Login</a>
+            <a href="{% url 'signup' %}" class="btn-fill">Signup</a>
+        {% endif %}
+    </div>
+</div>
+
+</header>
+
+<main class="page-content">
+    {% block content %}{% endblock %}
+</main>
+
+<footer class="footer">
+    <p>© 2025 ShopX • Built with Django</p>
+</footer>
+
+</body>
+</html>

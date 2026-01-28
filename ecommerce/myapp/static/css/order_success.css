@@ -1,0 +1,52 @@
+/* ORDER SUCCESS PAGE */
+
+.success-container {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.success-box {
+    background: #0f172a;
+    padding: 50px 60px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    max-width: 500px;
+    width: 100%;
+}
+
+.success-box h2 {
+    font-size: 28px;
+    margin-bottom: 15px;
+    color: #38bdf8;
+}
+
+.success-box p {
+    font-size: 16px;
+    margin: 8px 0;
+    color: #cbd5f5;
+}
+
+.success-box strong {
+    color: #22d3ee;
+}
+
+.success-box button {
+    margin-top: 25px;
+    padding: 12px 30px;
+    font-size: 16px;
+    border-radius: 25px;
+    border: none;
+    background: linear-gradient(135deg, #38bdf8, #22d3ee);
+    color: #020617;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.success-box button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 18px rgba(56,189,248,0.5);
+}

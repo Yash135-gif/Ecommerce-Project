@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Checkout{% endblock %}
+{% block css%}
+<link rel="stylesheet" href="{% static 'css/checkout.css' %}">
+{% endblock css%}
+{% block content %}
+<div class="checkout-wrapper">
+
+    <h2>Choose Payment Method</h2>
+
+    <form method="post" action="{% url 'place_order' %}">
+        {% csrf_token %}
+
+        <div class="payment-box">
+            <label>
+                <input type="radio" name="payment_method" value="card" required>
+                💳 Credit / Debit Card
+            </label>
+
+            <label>
+                <input type="radio" name="payment_method" value="upi">
+                📱 UPI
+            </label>
+
+            <label>
+                <input type="radio" name="payment_method" value="cod">
+                💵 Cash on Delivery
+            </label>
+        </div>
+
+        <button type="submit" class="pay-btn">
+            Pay Now
+        </button>
+    </form>
+
+</div>
+{% endblock %}

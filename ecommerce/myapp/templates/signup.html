@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Register | ShopX{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/signup.css' %}">
+{% endblock %}
+
+{% block content %}
+
+
+
+<div class="register-container">
+
+    <div class="register-card">
+         {{message}}
+        <h2>Create Your Account</h2>
+        <p>Sign up to access exclusive deals and track your orders</p>
+
+        <form action='{% url "register_data" %}' method="POST">
+            {% csrf_token %}
+
+            <label>Username</label>
+            <input type="text" name="name" placeholder="Enter your username" required>
+
+            <label>Email</label>
+            <input type="email" name="email" placeholder="Enter your email" required>
+
+            <label>Password</label>
+            <input type="password" name="password" placeholder="Enter your password" required>
+
+            <label>Confirm Password</label>
+            <input type="password" name="confirm_password" placeholder="Confirm your password" required>
+
+            <button type="submit">Register</button>
+
+            <p class="login-link">Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}

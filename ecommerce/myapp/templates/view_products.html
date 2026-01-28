@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/view_products.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2 class="title">All Products</h2>
+
+    <div class="product-grid">
+
+        {% for p in products %}
+        <div class="product-card">
+
+            <img src="{{ p.image.url }}" alt="{{ p.name }}">
+
+            <div class="product-info">
+                <h3>{{ p.name }}</h3>
+                <p class="price">₹ {{ p.price }}</p>
+                <p class="category">{{ p.category }}</p>
+                <p class="stock">Stock: {{ p.stock }}</p>
+            </div>
+
+            <div class="admin-actions">
+                <a href="{% url 'edit_product' p.id %}" class="edit-btn">Edit</a>
+                <a href="{% url 'delete_product' p.id %}" class="delete-btn">Delete  </a>
+            </div>
+
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <a href="{% url 'admin_dashboard' %}" class="back-btn">⬅ Back to Dashboard</a>
+
+</div>
+
+{% endblock content %}

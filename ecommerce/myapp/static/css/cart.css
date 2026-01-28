@@ -1,0 +1,127 @@
+.cart-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 15px;
+}
+
+.cart-item {
+    display: flex;
+    gap: 20px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    align-items: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.cart-img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.cart-details {
+    flex: 1;
+}
+
+.cart-details h4 {
+    margin: 0 0 8px;
+}
+
+.cart-details p {
+    margin: 4px 0;
+}
+
+.qty-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 8px 0;
+}
+
+.qty-btn {
+    padding: 6px 12px;
+    background: #0ea5e9;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.qty-btn:hover {
+    background: #0284c7;
+}
+
+.qty-btn.disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.empty-cart {
+    text-align: center;
+    font-size: 18px;
+    color: #777;
+    margin: 30px 0;
+}
+
+.continue-shopping {
+    display: inline-block;
+    margin-top: 20px;
+    color: #0ea5e9;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.continue-shopping:hover {
+    text-decoration: underline;
+}
+
+.cart-summary {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkout-btn {
+    padding: 10px 20px;
+    background: #0ea5e9;
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+.checkout-btn:hover {
+    background: #0284c7;
+}
+
+.remove-btn {
+    display: inline-block;
+    margin-top: 8px;
+    padding: 6px 14px;
+    background: #ef4444;
+    color: white;
+    font-size: 13px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.remove-btn:hover {
+    background: #dc2626;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+}
+
+/* disable + button look */
+.qty-btn.disabled {
+    pointer-events: none;
+    opacity: 0.4;
+}

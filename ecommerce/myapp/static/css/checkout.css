@@ -1,0 +1,50 @@
+.checkout-wrapper {
+    max-width: 420px;
+    margin: 60px auto;
+    padding: 30px;
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    text-align: center;
+}
+
+.checkout-wrapper h2 {
+    margin-bottom: 25px;
+    font-weight: 800;
+}
+
+.payment-box {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 25px;
+}
+
+.payment-box label {
+    padding: 14px;
+    border-radius: 12px;
+    background: #f1f5f9;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.payment-box input {
+    margin-right: 10px;
+}
+
+.payment-box label:hover {
+    background: #e0f2fe;
+}
+
+.pay-btn {
+    width: 100%;
+    padding: 14px;
+    border-radius: 999px;
+    border: none;
+    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+    color: #020617;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+}

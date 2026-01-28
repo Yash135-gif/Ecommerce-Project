@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/add_product.css' %}">
+{% endblock css %}
+
+
+{% block content %}
+
+<div class="form-container">
+
+    <h2>Add New Product</h2>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <input type="text" name="name" placeholder="Product Name">
+
+        <input type="number" name="price" placeholder="Price">
+
+        <textarea name="description" placeholder="Product Description"></textarea>
+
+        <input type="text" name="categoary" placeholder="Category">
+
+        <input type="number" name="stock" placeholder="Stock Quantity">
+
+        <input type="file" name="image">
+
+        <button type="submit">Add Product</button>
+    </form>
+
+    <a href="{% url 'admin_dashboard' %}">⬅ Back to Dashboard</a>
+
+</div>
+
+{% endblock content %}

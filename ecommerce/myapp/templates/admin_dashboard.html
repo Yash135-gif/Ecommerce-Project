@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}">
+{% endblock css %}
+{% block content %}
+
+<div class="admin-container">
+
+    <h2 class="admin-title">Welcome, Admin</h2>
+
+    <div class="admin-cards">
+
+        <a href="{% url 'add_product' %}" class="card">
+            <span>➕</span>
+            <h3>Add Product</h3>
+            <p>Add new items</p>
+        </a>
+
+        <a href="{% url 'view_products' %}" class="card">
+            <span>📦</span>
+            <h3>View Products</h3>
+            <p>Manage products</p>
+        </a>
+
+        <a href="{% url 'view_users' %}" class="card">
+            <span>👥</span>
+            <h3>See Users</h3>
+            <p>Customer list</p>
+        </a>
+
+    </div>
+
+    <a href="{% url 'logout' %}" class="logout">Logout</a>
+
+</div>
+
+{% endblock content %}

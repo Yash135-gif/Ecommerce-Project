@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/view_users.css' %}">
+{% endblock css %}
+
+{% block content %}
+
+<div class="container">
+
+    <h2 class="title">All Customers</h2>
+
+    <div class="user-grid">
+
+        {% for u in users %}
+        <div class="user-card">
+            <div class="avatar">
+                {{ u.name|slice:":1"|upper }}
+            </div>
+
+            <h3>{{ u.name }}</h3>
+            <p>{{ u.email }}</p>
+        </div>
+        {% endfor %}
+
+    </div>
+
+    <a href="{% url 'admin_dashboard' %}" class="back-btn">⬅ Back to Dashboard</a>
+
+</div>
+
+{% endblock content %}

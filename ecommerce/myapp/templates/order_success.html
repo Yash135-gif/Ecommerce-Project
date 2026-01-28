@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/order_success.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="success-container">
+    <div class="success-box">
+        <h2>🎉 Order Placed Successfully!</h2>
+        <p>Your order ID is <strong>#{{ order.id }}</strong></p>
+        <p>Total Paid: ₹{{ order.total_price }}</p>
+
+        <a href="{% url 'home' %}">
+            <button>Continue Shopping</button>
+        </a>
+    </div>
+</div>
+<a href="{% url 'order_history' %}">
+    <button style="margin-top:20px;">View My Orders</button>
+</a>
+{% endblock %}

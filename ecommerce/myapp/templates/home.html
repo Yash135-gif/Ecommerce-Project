@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}ShopX – Premium Shopping{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<section class="hero">
+    <video class="hero-video" autoplay muted loop playsinline>
+        <source src="{% static 'videos/herovideo.mp4' %}" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+        <span class="hero-badge">🔥 Trending Store 2025</span>
+        <h1>{{ site_title|default:"Discover Products That Match Your Style" }}</h1>
+        <p>{{ site_tagline|default:"Premium quality • Best prices • Fast delivery"}}</p>
+        <div class="hero-actions">
+            <a href="#products" class="hero-btn primary">Shop Now</a>
+        </div>
+    </div>
+</section>
+
+<!-- PRODUCTS SECTION -->
+<section class="products-section" id="products">
+
+    <!-- FILTERS -->
+    <div class="inline-filters">
+        <div class="filter-group">
+            <span>Price</span>
+            <a href="?price=0-99" class="{% if price_filter == '0-99' %}active{% endif %}">₹0–99</a>
+            <a href="?price=100-499" class="{% if price_filter == '100-499' %}active{% endif %}">₹100–499</a>
+            <a href="?price=500-999" class="{% if price_filter == '500-999' %}active{% endif %}">₹500–999</a>
+            <a href="?price=1000-1999" class="{% if price_filter == '1000-1999' %}active{% endif %}">₹1000–2000</a>
+            <a href="?price=2000-4999" class="{% if price_filter == '2000-4999' %}active{% endif %}">₹2000-5000</a>
+            <a href="?price=5000plus" class="{% if price_filter == '5000plus' %}active{% endif %}">₹5000+</a>
+        </div>
+
+        <div class="filter-group">
+            <span>Category</span>
+            <a href="?categoary=Electronics" class="{% if categoary_filter == 'Electronics' %}active{% endif %}">Electronics</a>
+            <a href="?categoary=Fashion" class="{% if categoary_filter == 'Fashion' %}active{% endif %}">Fashion</a>
+            <a href="?categoary=Books" class="{% if categoary_filter == 'Books' %}active{% endif %}">Books</a>
+            <a href="?categoary=Home and Kitchen" class="{% if categoary_filter == 'Home and Kitchen' %}active{% endif %}">Home and Kitchen</a>
+        </div>
+
+        <div class="filter-group">
+            <span>Sort</span>
+            <a href="?sort=low" class="{% if sort_filter == 'low' %}active{% endif %}">Low → High</a>
+            <a href="?sort=high" class="{% if sort_filter == 'high' %}active{% endif %}">High → Low</a>
+            <a href="{% url 'home' %}" class="clear">Clear All</a>
+        </div>
+    </div>
+
+    <!-- PRODUCTS GRID -->
+    <div class="products">
+        {% for product in products %}
+        <article class="card">
+
+            {% if product.stock == 0 %}
+                <div class="card-badge out">Out of Stock</div>
+            {% else %}
+                <div class="card-badge new">New</div>
+            {% endif %}
+
+            <div class="card-img">
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            </div>
+
+            <div class="card-body">
+                <h4>{{ product.name }}</h4>
+                <p class="price">₹{{ product.price }}</p>
+                <p class="desc">{{ product.description|truncatechars:90 }}</p>
+
+                {% if product.stock == 0 %}
+                    <button class="view-btn disabled" disabled>Unavailable</button>
+                {% else %}
+                    <a href="{% url 'product_detail' product.id %}">
+                        <button class="view-btn">View Product</button>
+                    </a>
+                {% endif %}
+            </div>
+
+        </article>
+        {% empty %}
+        <div class="no-products">
+            <h3>No products found</h3>
+            <p>Try changing filters</p>
+        </div>
+        {% endfor %}
+    </div>
+
+</section>
+
+{% endblock %}
