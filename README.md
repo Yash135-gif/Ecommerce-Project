@@ -5,6 +5,24 @@ It provides a complete shopping experience with product browsing, cart managemen
 
 This project demonstrates real-world ecommerce logic, backend workflows, and Django best practices, using server-side rendered templates.
 
+## 🚀 Preview
+Here are some visuals from the project:
+
+## 📸 Project Screenshots
+
+### User Dashboard
+![User Dashboard](screenshots/userdashboard.png)
+
+### Carts
+![Carts](screenshots/carts.png)
+
+### Admin Dashboard
+![Admin Dashboard](screenshots/admindashboard.png)
+
+### Admin Can see users
+![Users](screenshots/users.png)
+
+
 ✨ Key Features
 👤 Customer
 
